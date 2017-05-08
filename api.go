@@ -25,6 +25,8 @@ import (
 	pb "github.com/google/safebrowsing/internal/safebrowsing_proto"
 
 	"github.com/golang/protobuf/proto"
+	"net"
+	"time"
 )
 
 const (
@@ -60,7 +62,12 @@ func newNetAPI(root string, key string) (*netAPI, error) {
 	q.Set("key", key)
 	q.Set("alt", "proto")
 	u.RawQuery = q.Encode()
-	return &netAPI{url: u}, nil
+	return &netAPI{url: u, client: http.Client{
+		Transport: &http.Transport{
+			Dial:                  (&net.Dialer{Timeout: time.Second, KeepAlive: time.Second, }).Dial,
+			TLSHandshakeTimeout:   time.Second,
+			ResponseHeaderTimeout: time.Second,
+		}}}, nil
 }
 
 // doRequests performs a POST to requestPath. It uses the marshaled form of req
