@@ -79,7 +79,7 @@ import (
 	"sync/atomic"
 	"time"
 	"github.com/mercadolibre/go-meli-toolkit/godog"
-	pb "github.com/google/safebrowsing/internal/safebrowsing_proto"
+	pb "github.com/fperezf/safebrowsing/internal/safebrowsing_proto"
 )
 
 const (
