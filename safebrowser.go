@@ -78,7 +78,7 @@ import (
 	"log"
 	"sync/atomic"
 	"time"
-
+	"github.com/mercadolibre/go-meli-toolkit/godog"
 	pb "github.com/google/safebrowsing/internal/safebrowsing_proto"
 )
 
@@ -456,13 +456,20 @@ func (sb *SafeBrowser) LookupURLs(urls []string) (threats [][]URLThreat, err err
 		}
 
 		// Actually query the Safe Browsing API for exact full hash matches.
+		initTime := time.Now()
 		resp, err := sb.api.HashLookup(req)
+		benchTime := time.Now().Sub(initTime)
+
+		godog.RecordSimpleMetric("gsb.request", 1)
+		godog.RecordCompoundMetric("gsb.request.time", benchTime.Seconds()*1000)
+
 		if err != nil {
+			godog.RecordSimpleMetric("gsb.request.status", 1, new(godog.Tags).Add("status", "fail").ToArray()...)
 			sb.log.Printf("HashLookup failure: %v", err)
 			atomic.AddInt64(&sb.stats.QueriesFail, int64(len(urls)-i))
 			return threats, err
 		}
-
+		godog.RecordSimpleMetric("gsb.request.status", 1, new(godog.Tags).Add("status", "ok").ToArray()...)
 		// Update the cache.
 		sb.c.Update(req, resp)
 
