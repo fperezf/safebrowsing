@@ -1,0 +1,31 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "RG2KlWtXDrBnL49LTiSS6S5k3E8=",
+			"path": "github.com/jimlawless/cfg",
+			"revision": "136e0c264d31ea50a0c400640a2a2dac5b63d25c",
+			"revisionTime": "2016-03-26T14:17:42Z"
+		},
+		{
+			"checksumSHA1": "g/VgUdVxhUVA5RAiTCEG9dpxTx4=",
+			"path": "github.com/mercadolibre/go-meli-toolkit/godog",
+			"revision": "cdad2af100a1861e61101c17b9c0dd48c75fb4b6",
+			"revisionTime": "2017-05-04T17:07:43Z"
+		},
+		{
+			"checksumSHA1": "xi+BTgqu+UHfhn6FMcKm3sy6t4s=",
+			"path": "github.com/sschepens/datadog-go/statsd",
+			"revision": "b2b1a2836590440e836a24e0d7174197d9f9eb58",
+			"revisionTime": "2016-06-30T20:37:01Z"
+		},
+		{
+			"checksumSHA1": "KoefD9A3V8xGM+RpcQRyt5kK0XY=",
+			"path": "github.com/streamrail/concurrent-map",
+			"revision": "8bf1e9bacbf65b10c81d0f4314cf2b1ebef728b5",
+			"revisionTime": "2016-08-23T15:06:47Z"
+		}
+	],
+	"rootPath": "github.com/fperezf/safebrowsing"
+}
